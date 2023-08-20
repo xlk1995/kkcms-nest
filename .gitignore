@@ -1,3 +1,6 @@
+prisma/*
+!prisma/schema.prisma
+!prisma/seed.ts
 # compiled output
 /dist
 /node_modules

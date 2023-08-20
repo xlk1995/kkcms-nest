@@ -19,5 +19,21 @@ async function run() {
       },
     })
   }
+  const user = await prisma.user.findFirst({
+    orderBy: {
+      id: 'asc',
+    },
+    take: 1,
+  })
+  await prisma.user.update({
+    where: {
+      id: user.id,
+    },
+    data: {
+      name: 'admin',
+      password: 'a123456',
+    },
+  })
 }
+
 run()
