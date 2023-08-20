@@ -9,6 +9,13 @@ async function run() {
       data: {
         name: Random.cname(),
         password: Random.string(),
+        App: {
+          create: {
+            title: Random.csentence(),
+            content: Random.paragraph(),
+            preview: Random.image('300x300'),
+          },
+        },
       },
     })
   }
