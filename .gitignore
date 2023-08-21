@@ -1,10 +1,11 @@
-prisma/*
-!prisma/schema.prisma
-!prisma/seed.ts
 # compiled output
 /dist
 /node_modules
 .env
+prisma/*
+!prisma/schema.prisma
+!prisma/seed.ts
+!prisma/seed/
 # Logs
 logs
 *.log
@@ -36,3 +37,4 @@ lerna-debug.log*
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+

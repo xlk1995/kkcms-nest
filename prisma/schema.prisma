@@ -14,9 +14,10 @@ model User {
   id       Int      @id @default(autoincrement())
   name     String
   password String
-  secret   String
+  secret   String?
   email    String?
   mobile   String?
+  avatar   String?
   createAt DateTime @default(now())
   updateAt DateTime @updatedAt
   App      App[]

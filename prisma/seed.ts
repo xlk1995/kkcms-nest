@@ -1,6 +1,7 @@
 // run command npx prisma db seed
 import { PrismaClient } from '@prisma/client'
 import { Random } from 'mockjs'
+import user from './seed/user'
 const prisma = new PrismaClient()
 
 async function run() {
@@ -19,21 +20,7 @@ async function run() {
       },
     })
   }
-  const user = await prisma.user.findFirst({
-    orderBy: {
-      id: 'asc',
-    },
-    take: 1,
-  })
-  await prisma.user.update({
-    where: {
-      id: user.id,
-    },
-    data: {
-      name: 'admin',
-      password: 'a123456',
-    },
-  })
+  await user()
 }
 
 run()
