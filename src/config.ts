@@ -1,5 +1,5 @@
 export default () => {
   return {
-    name: 'kk',
+    name: 'kkone',
   }
 }
