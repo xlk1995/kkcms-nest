@@ -1,17 +1,16 @@
 import { Global, Module } from '@nestjs/common'
 import { ConfigService } from './config.service'
-import { ConfigModule as BaseModule } from '@nestjs/config'
+import { ConfigModule } from '@nestjs/config'
 import config from '../config'
-import { ConfigController } from './config.controller'
 
 @Global()
 @Module({
   imports: [
-    BaseModule.forRoot({
+    ConfigModule.forRoot({
       load: [config],
     }),
   ],
-  controllers: [ConfigController],
   providers: [ConfigService],
+  exports: [ConfigService],
 })
-export class ConfigModule {}
+export class CommonModule {}
