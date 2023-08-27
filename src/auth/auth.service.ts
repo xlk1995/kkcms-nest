@@ -1,9 +1,11 @@
-import { Injectable } from '@nestjs/common'
+import { BadRequestException, Injectable } from '@nestjs/common'
 import { CreateAuthDto } from './dto/create-auth.dto'
 import { UpdateAuthDto } from './dto/update-auth.dto'
 import { PrismaService } from 'src/common/prisma.service'
 import { RegisterDto } from './dto/register.dto'
 import { hash } from 'argon2'
+import { LoginDto } from './dto/login.dto'
+import { validatafail } from 'src/helper'
 
 @Injectable()
 export class AuthService {
@@ -13,6 +15,15 @@ export class AuthService {
       data: {
         name: dto.name,
         password: await hash(dto.password),
+      },
+    })
+    return user
+  }
+  async login(loginDto: LoginDto) {
+    const { name, password } = loginDto
+    const user = await this.prisma.user.findFirst({
+      where: {
+        OR: [{ name }, { password: name }, { mobile: name }],
       },
     })
     return user

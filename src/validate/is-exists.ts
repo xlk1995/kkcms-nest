@@ -1,8 +1,8 @@
 import { PrismaClient } from '@prisma/client'
 import { ValidationArguments, ValidationOptions, registerDecorator } from 'class-validator'
 
-// 验证表字段是否唯一
-export function IsNotExists(table: string, fileds: string[], validationOptions?: ValidationOptions) {
+// 验证表字段是否存在
+export function IsExists(table: string, fileds: string[], validationOptions?: ValidationOptions) {
   return function (object: Record<string, any>, propertyName: string) {
     registerDecorator({
       name: 'IsNotExists',
@@ -18,7 +18,7 @@ export function IsNotExists(table: string, fileds: string[], validationOptions?:
               OR: fileds.map((filed) => ({ [filed]: value })),
             },
           })
-          return !Boolean(res)
+          return Boolean(res)
         },
       },
     })
